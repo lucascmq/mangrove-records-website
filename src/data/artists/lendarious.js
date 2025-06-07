@@ -3,10 +3,9 @@
  * Módulo ES6 - Mangrove Records
  */
 
-import { artistImages } from '..src/utils/importImages.js';
+import { artistImages } from '../../utils/ImportImages.js';
 
-
-export const [nomeartista] = {
+export const lendarious = {
     // Identificação única
     id: 'lendarious',
     slug: 'lendarious',
