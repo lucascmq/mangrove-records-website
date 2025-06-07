@@ -3,7 +3,10 @@
  * Módulo ES6 - Mangrove Records
  */
 
-export const darkmangrove = {
+import { artistImages } from '..src/utils/importImages.js';
+
+
+export const [nomeartista] = {
     // Identificação única
     id: 'dark-mangrove',
     slug: 'dark-mangrove',
@@ -13,8 +16,7 @@ export const darkmangrove = {
     genero: 'Forest',
     
     // Assets visuais
-    foto: '../src/assets/images/Artists/darkmangrove/profile.jpg',
-    
+foto: artistImages['darkmangove/profile'],    
     // Descrição artística
     descricao: 'Mistura de sonoridades de uma floresta noturna alinhada à roça interiorana paulista. Uma imersão total através das frequências do Forest.',
     

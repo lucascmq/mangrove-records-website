@@ -3,7 +3,10 @@
  * Módulo ES6 - Mangrove Records
  */
 
-export const lendarious = {
+import { artistImages } from '..src/utils/importImages.js';
+
+
+export const [nomeartista] = {
     // Identificação única
     id: 'lendarious',
     slug: 'lendarious',
@@ -13,8 +16,7 @@ export const lendarious = {
     genero: 'Forest',
     
     // Assets visuais
-    foto: '../src/assets/images/Artists/lendarious/profile.jpg',
-    
+foto: artistImages['lendarious/profile'],    
     // Descrição artística
     descricao: 'DJ especializado em Forest Psytrance, explorando paisagens sonoras naturais através de seleções musicais que conectam o público com as frequências orgânicas da floresta.',
     
