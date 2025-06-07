@@ -2,18 +2,18 @@
  * Dados do artista: Darkside of FMs
  * Módulo ES6 - Mangrove Records
  */
+import profileImage from '../../assets/images/Artists/darkside/profile.jpg';
 
 export const darksideoffms = {    
     id: 'darkside-of-fms',
     slug: 'darkside-of-fms',
-
-    // Informações básicas
     nome: 'Darkside of FMs',
     genero: 'Darkpsy',
     
     // Assets visuais
-foto: '../src/assets/images/Artists/darkside/profile.jpg',
-    // Descrição artística
+ foto: profileImage,
+ 
+     // Descrição artística
     descricao: '"Psychedelic music for advanced minds" - Explorando as frequências mais profundas da consciência através do darkpsytrance.',
     
     // Redes sociais e plataformas
