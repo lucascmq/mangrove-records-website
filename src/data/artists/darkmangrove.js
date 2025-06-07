@@ -14,12 +14,12 @@ export const [nomeartista] = {
     // Informações básicas
     nome: 'Dark Mangrove',
     genero: 'Forest',
-    
+
     // Assets visuais
-foto: artistImages['darkmangove/profile'],    
+    foto: artistImages['darkmangove/profile'],
     // Descrição artística
     descricao: 'Mistura de sonoridades de uma floresta noturna alinhada à roça interiorana paulista. Uma imersão total através das frequências do Forest.',
-    
+
     // Redes sociais e plataformas
     redesSociais: {
         spotify: {
@@ -29,7 +29,7 @@ foto: artistImages['darkmangove/profile'],
         },
         instagram: {
             url: 'https://www.instagram.com/darkmangrove_lightscrawl/',
-            label: '📷 Instagram', 
+            label: '📷 Instagram',
             ariaLabel: 'Perfil do Dark Mangrove no Instagram'
         },
         soundcloud: {
