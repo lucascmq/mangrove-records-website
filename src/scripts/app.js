@@ -22,6 +22,8 @@ import { lendariousset } from '../data/releases/lendariousset.js';
 import { ArtistCard } from '../components/cards/ArtistCard.js';
 import { ReleaseCard } from '../components/cards/ReleaseCard.js';
 
+import { logoImages } from '../utils/ImportImages.js';
+
 // Imports dos utilitários
 import { initializePlayerControls } from '../utils/playerControls.js';
 
@@ -52,12 +54,13 @@ class MangroveApp {
      */
     loadContent() {
         console.log('🎵 Mangrove Records - Iniciando aplicação...');
-        
+
         this.loadArtists();
         this.loadReleases();
+        this.loadLogos();
         this.activateLoadingAnimations();
         initializePlayerControls();
-        
+
         console.log('✅ Aplicação carregada com sucesso!');
     }
 
@@ -66,7 +69,7 @@ class MangroveApp {
      */
     loadArtists() {
         const container = document.querySelector('#artists-container');
-        
+
         if (!container) {
             console.warn('⚠️ Container de artistas não encontrado');
             return;
@@ -94,7 +97,7 @@ class MangroveApp {
      */
     loadReleases() {
         const container = document.querySelector('#releases-container');
-        
+
         if (!container) {
             console.warn('⚠️ Container de releases não encontrado');
             return;
@@ -122,7 +125,7 @@ class MangroveApp {
      */
     activateLoadingAnimations() {
         const loadingElements = document.querySelectorAll('.loading');
-        
+
         loadingElements.forEach((element, index) => {
             setTimeout(() => {
                 element.classList.add('loaded');
@@ -156,7 +159,17 @@ class MangroveApp {
     getArtist(artistId) {
         return this.artists.find(artist => artist.id === artistId) || null;
     }
+
+    loadLogos() {
+    const aboutLogo = document.querySelector('.about-logo');
+    if (aboutLogo && logoImages['Logo_Mangrove_Records']) {
+        aboutLogo.src = logoImages['Logo_Mangrove_Records'];
+        console.log('🌿 Logo da Mangrove carregada');
+    }
 }
+}
+
+
 
 // Inicializa a aplicação
 const app = new MangroveApp();

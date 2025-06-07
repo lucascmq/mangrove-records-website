@@ -5,8 +5,8 @@ module.exports = {
   entry: './src/scripts/app.js',
   
   output: {
-    path: path.resolve(__dirname, 'dist'),
-  filename: 'bundle.js',
+ path: path.resolve(__dirname, 'docs'),
+   filename: 'bundle.js',
   publicPath: process.env.PUBLIC_PATH || '/',  // ← Usa variável ou '/'
   clean: true
   },

@@ -21,4 +21,8 @@ const releaseImages = importAll(
   require.context('../assets/images/releases', true, /\.(png|jpe?g|svg)$/)
 );
 
-export { artistImages, releaseImages };
+const logoImages = importAll(
+  require.context('../assets/images/logos', true, /\.(png|jpe?g|svg)$/)
+);
+
+export { artistImages, releaseImages, logoImages };
