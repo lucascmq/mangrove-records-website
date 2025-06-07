@@ -6,9 +6,9 @@ module.exports = {
   
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
-    publicPath: '/mangrove-records-website/',
-    clean: true
+  filename: 'bundle.js',
+  publicPath: process.env.PUBLIC_PATH || '/',  // ← Usa variável ou '/'
+  clean: true
   },
   
   module: {
