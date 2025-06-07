@@ -1,0 +1,20 @@
+{
+  "name": "mangrove-records-website",
+  "version": "1.0.0",
+  "description": "Psytrance/Forest/Darkpsy label website",
+  "main": "src/scripts/app.js",
+  "scripts": {
+    "dev": "webpack serve --config webpack.config.js",
+    "build": "webpack --config webpack.config.js --mode production",
+    "clean": "rimraf dist"
+  },
+  "devDependencies": {
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1",
+    "css-loader": "^6.8.1",
+    "style-loader": "^3.3.3",
+    "html-webpack-plugin": "^5.5.3",
+    "rimraf": "^5.0.5"
+  }
+}
