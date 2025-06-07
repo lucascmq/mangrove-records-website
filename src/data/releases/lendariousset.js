@@ -3,6 +3,9 @@
  * Módulo ES6 - Mangrove Records
  */
 
+import { releaseImages } from '../../utils/ImportImages.js';
+
+
 export const lendariousset = {
     // Identificação única
     id: 'lendarious-set',
@@ -13,8 +16,7 @@ export const lendariousset = {
     artista: 'Lendarious DJ Set',
     
     // Assets visuais (pode usar foto do Lendarious ou criar capa específica)
-    capa: '../src/assets/images/Artists/lendarious/profile.jpg',
-    
+   capa: releaseImages['lendarious/release1'],    
     // Sistema de player SoundCloud (sem alternância)
     player: {
         tipo: 'soundcloud',
