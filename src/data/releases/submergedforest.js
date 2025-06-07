@@ -3,6 +3,9 @@
  * Módulo ES6 - Mangrove Records
  */
 
+import { releaseImages } from '../../utils/ImportImages.js';
+
+
 export const submergedforest = {
     // Identificação única
     id: 'submerged',
@@ -13,8 +16,7 @@ export const submergedforest = {
     artista: 'Dark Mangrove',
     
     // Assets visuais
-    capa: '../src/assets/images/releases/darkmangrove/release1.jpg',
-    
+  capa: releaseImages['darkmangrove/release1'],    
     // Sistema de players Bandcamp
     players: {
         track: {

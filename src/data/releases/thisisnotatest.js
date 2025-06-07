@@ -3,6 +3,8 @@
  * Módulo ES6 - Mangrove Records
  */
 
+import { releaseImages } from '../../utils/ImportImages.js';
+
 export const thisisnotatest = {
     // Identificação única
     id: 'darkside',
@@ -11,10 +13,9 @@ export const thisisnotatest = {
     // Informações básicas
     titulo: 'This is not a test',
     artista: 'Darkside of FMs',
-    
+
     // Assets visuais
-    capa: '../src/assets/images/releases/darkside/release1.jpg',
-    
+    capa: releaseImages['darkside/release1'],
     // Sistema de players Bandcamp
     players: {
         track: {

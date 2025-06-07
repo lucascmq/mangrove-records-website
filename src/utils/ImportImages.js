@@ -15,4 +15,10 @@ const artistImages = importAll(
   require.context('../assets/images/Artists', true, /\.(png|jpe?g|svg)$/)
 );
 
-export { artistImages };
+
+// Importa todas as imagens dos releases
+const releaseImages = importAll(
+  require.context('../assets/images/releases', true, /\.(png|jpe?g|svg)$/)
+);
+
+export { artistImages, releaseImages };
