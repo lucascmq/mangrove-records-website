@@ -55,6 +55,7 @@ body {
     text-align: center;
      transition: all 0.3s ease;
     cursor: default;
+    
 }
 
 .header-subtitle:hover {
@@ -945,4 +946,33 @@ body {
 
 .control-btn:hover {
     background: rgba(255, 255, 255, 0.25);
+}
+
+/* Desktop: efeito hover */
+@media (hover: hover) and (pointer: fine) {
+    .header-subtitle:hover {
+        transform: translateY(-2px);
+        text-shadow: 0 0 8px rgba(180, 220, 180, 0.4);
+    }
+}
+
+/* Mobile: animação sutil automática */
+@media (hover: none) and (pointer: coarse) {
+    .header-subtitle {
+        animation: mobilePulse 4s ease-in-out infinite;
+    }
+    
+    .header-subtitle:active {
+        transform: translateY(-1px);
+        text-shadow: 0 0 6px rgba(180, 220, 180, 0.3);
+    }
+}
+
+@keyframes mobilePulse {
+    0%, 100% { 
+        text-shadow: 0 0 3px rgba(180, 220, 180, 0.2);
+    }
+    50% { 
+        text-shadow: 0 0 6px rgba(180, 220, 180, 0.3);
+    }
 }
