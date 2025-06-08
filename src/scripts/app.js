@@ -15,6 +15,7 @@ import '../styles/main.css';
 import '../styles/effects/logo-effects.css';
 
 
+
 // Imports dos dados dos artistas
 import { darksideoffms } from '../data/artists/darksideoffms.js';
 import { darkmangrove } from '../data/artists/darkmangrove.js';
@@ -28,6 +29,7 @@ import { lendariousset } from '../data/releases/lendariousset.js';
 // Imports dos componentes
 import { ArtistCard } from '../components/cards/ArtistCard.js';
 import { ReleaseCard } from '../components/cards/ReleaseCard.js';
+import ScrollToTop from '../components/ui/ScrollToTop.js';
 
 import { logoImages } from '../utils/ImportImages.js';
 
@@ -67,6 +69,7 @@ class MangroveApp {
         this.loadLogos();
         this.activateLoadingAnimations();
         initializePlayerControls();
+        this.scrollToTop = new ScrollToTop();
 
         console.log('✅ Aplicação carregada com sucesso!');
     }

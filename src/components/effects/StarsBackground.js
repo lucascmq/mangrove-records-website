@@ -90,7 +90,7 @@ export default class StarBackground {
         // Garantir que o canvas cubra toda a tela
         this.updateCanvasSize();
         
-        // Configurações
+        // Configurações iniciais (serão recalculadas após medir a página)
         this.nodeCount = 250;
         this.connectionDistance = 200;
         this.activeRegion = 350;
@@ -127,44 +127,88 @@ export default class StarBackground {
         this.colorScheme = 0;
         
         this.setupEventListeners();
-        this.initNodes();
+        
+        // Inicialização com delay para garantir que a página carregou
+        setTimeout(() => {
+            this.updateCanvasSize();
+            this.calculateNodeCount();
+            this.initNodes();
+            this.start();
+        }, 500);
         
         // Bind do método animate
         this.animate = this.animate.bind(this);
-        this.start();
         
         console.log('🌟 StarBackground inicializado');
     }
     
     updateCanvasSize() {
         this.width = this.canvas.width = window.innerWidth;
-        this.height = this.canvas.height = window.innerHeight;
-        this.centerX = this.width / 2;
-        this.centerY = this.height / 2;
-        this.mouseX = this.centerX;
-        this.mouseY = this.centerY;
+        
+        // Forçar atualização e aguardar o DOM carregar completamente
+        setTimeout(() => {
+            // Múltiplas formas de calcular a altura real da página
+            const heights = [
+                document.body.scrollHeight,
+                document.documentElement.scrollHeight,
+                document.body.offsetHeight,
+                document.documentElement.offsetHeight,
+                document.body.clientHeight + window.scrollY,
+                window.innerHeight
+            ];
+            
+            // Pegar a maior altura encontrada
+this.height = window.innerHeight * 6;
+            this.canvas.height = this.height;
+            
+            // Atualizar o CSS também via JavaScript
+            this.canvas.style.height = this.height + 'px';
+            
+            this.centerX = this.width / 2;
+            this.centerY = this.height / 2;
+            this.mouseX = this.centerX;
+            this.mouseY = this.centerY;
+            
+            console.log(`🌌 Canvas ajustado: ${this.width}x${this.height}px`);
+            console.log(`📏 Alturas detectadas:`, heights);
+        }, 100);
     }
     
     setupEventListeners() {
         // Redimensionamento da janela
         window.addEventListener('resize', () => {
             this.updateCanvasSize();
+            this.calculateNodeCount();
             this.initNodes();
         });
         
-        // Rastreamento do mouse
+        // Observar mudanças no conteúdo da página (com throttle)
+        let resizeTimeout;
+        const resizeObserver = new ResizeObserver(() => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                this.updateCanvasSize();
+                this.calculateNodeCount();
+                this.initNodes();
+            }, 500); // Delay maior para evitar recálculos excessivos
+        });
+        resizeObserver.observe(document.body);
+        
+        // Remover MutationObserver que pode estar causando loops
+        
+        // Rastreamento do mouse considerando o scroll
         document.addEventListener('mousemove', (e) => {
             this.mouseX = e.clientX;
-            this.mouseY = e.clientY;
-            this.recordMousePosition(e.clientX, e.clientY);
+            this.mouseY = e.clientY + window.scrollY; // Posição real no documento
+            this.recordMousePosition(this.mouseX, this.mouseY);
         });
         
         document.addEventListener('touchmove', (e) => {
             e.preventDefault();
             const touch = e.touches[0];
             this.mouseX = touch.clientX;
-            this.mouseY = touch.clientY;
-            this.recordMousePosition(touch.clientX, touch.clientY);
+            this.mouseY = touch.clientY + window.scrollY;
+            this.recordMousePosition(this.mouseX, this.mouseY);
         });
         
         // Configurar botões de controle se existirem
@@ -206,15 +250,31 @@ export default class StarBackground {
         }
     }
     
+    calculateNodeCount() {
+        // Calcular número de estrelas baseado na área total da página
+        const pageArea = this.width * this.height;
+        const viewportArea = window.innerWidth * window.innerHeight;
+        const density = 0.0003; // Densidade de estrelas por pixel²
+        
+        this.nodeCount = Math.floor(pageArea * density);
+        // Limitar para performance
+        this.nodeCount = Math.min(this.nodeCount, 800);
+        this.nodeCount = Math.max(this.nodeCount, 200);
+        
+        console.log(`📊 Página: ${this.height}px | Área: ${pageArea}px² | Estrelas: ${this.nodeCount}`);
+    }
+    
     initNodes() {
         this.nodes = [];
         
-        // Criar estrelas simplesmente distribuídas por toda a tela
+        // Distribuir estrelas uniformemente por toda a altura da página
         for (let i = 0; i < this.nodeCount; i++) {
-            this.nodes.push(new Star(null, null, this.width, this.height));
+            const x = Math.random() * this.width;
+            const y = Math.random() * this.height; // Toda a altura da página
+            this.nodes.push(new Star(x, y, this.width, this.height));
         }
         
-        console.log(`⭐ ${this.nodes.length} estrelas espalhadas pela tela`);
+        console.log(`⭐ ${this.nodes.length} estrelas distribuídas por toda a página`);
     }
     
     drawConnections() {
@@ -320,6 +380,14 @@ export default class StarBackground {
     }
     
     // Métodos públicos para controle externo
+    forceResize() {
+        // Método para forçar redimensionamento manualmente
+        this.updateCanvasSize();
+        this.calculateNodeCount();
+        this.initNodes();
+        console.log('🔄 Redimensionamento forçado');
+    }
+    
     changeColorScheme(scheme) {
         if (scheme >= 0 && scheme < this.colorSchemes.length) {
             this.colorScheme = scheme;
@@ -331,6 +399,8 @@ export default class StarBackground {
     }
     
     reset() {
+        this.updateCanvasSize();
+        this.calculateNodeCount();
         this.initNodes();
     }
 }
