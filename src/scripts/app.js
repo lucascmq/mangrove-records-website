@@ -3,6 +3,13 @@
  * Mangrove Records - Sistema modular ES6
  */
 
+// main.js
+import StarBackground from '../components/effects/StarsBackground.js';
+console.log('Script carregado');
+document.addEventListener('DOMContentLoaded', function() {
+    const background = new StarBackground('starBackground');  // Inicializar o background de estrelas
+});
+
 // Imports dos estilos
 import '../styles/main.css';
 import '../styles/effects/logo-effects.css';
@@ -167,6 +174,7 @@ class MangroveApp {
         console.log('🌿 Logo da Mangrove carregada');
     }
 }
+
 }
 
 
