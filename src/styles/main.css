@@ -948,6 +948,12 @@ body {
     background: rgba(255, 255, 255, 0.25);
 }
 
+/* Efeito sutil para o header-subtitle */
+.header-subtitle {
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
 /* Desktop: efeito hover */
 @media (hover: hover) and (pointer: fine) {
     .header-subtitle:hover {
@@ -956,23 +962,37 @@ body {
     }
 }
 
-/* Mobile: animação sutil automática */
-@media (hover: none) and (pointer: coarse) {
+/* Mobile: versão mais leve e otimizada */
+@media (max-width: 768px) {
     .header-subtitle {
-        animation: mobilePulse 4s ease-in-out infinite;
+        /* Remove animações automáticas pesadas */
+        animation: none;
+        /* Otimizações para mobile */
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        will-change: auto;
     }
     
+    /* Só feedback de toque simples */
     .header-subtitle:active {
         transform: translateY(-1px);
-        text-shadow: 0 0 6px rgba(180, 220, 180, 0.3);
+        opacity: 0.9;
+        transition: transform 0.1s ease, opacity 0.1s ease;
+    }
+}
+
+/* Só para tablets e dispositivos médios (opcional) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .header-subtitle {
+        animation: mobilePulse 6s ease-in-out infinite;
     }
 }
 
 @keyframes mobilePulse {
     0%, 100% { 
-        text-shadow: 0 0 3px rgba(180, 220, 180, 0.2);
+        opacity: 0.9;
     }
     50% { 
-        text-shadow: 0 0 6px rgba(180, 220, 180, 0.3);
+        opacity: 1;
     }
 }
